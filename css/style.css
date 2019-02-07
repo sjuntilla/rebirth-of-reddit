@@ -76,7 +76,6 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
-    background-position-y: -25px;
     background-size: cover;
     opacity: 0.5;
     min-width: 100vw;

@@ -7,7 +7,6 @@
     const randomSubreddits = ['https://www.reddit.com/r/WholesomeMemes.json', 'https://www.reddit.com/r/nosleep.json', 'https://www.reddit.com/r/FFXIV.json', 'https://www.reddit.com/r/NatureIsFuckingLit.json', 'https://www.reddit.com/r/rpghorrorstories.json', 'https://www.reddit.com/r/RarePuppers.json', 'https://www.reddit.com/r/MildlyInteresting.json', 'https://www.reddit.com/r/Gunpla.json', 'https://www.reddit.com/r/TodayILearned.json', 'https://www.reddit.com/r/WritingPrompts.json'];
 
     //HEADER
-
     let head = document.createElement('div');
     head.className = 'pageHead';
     box.appendChild(head);
@@ -50,7 +49,7 @@
         } else {
             head.style.backgroundImage = "url('../assets/headbg.png')";
         }
-
+        //NAV BUTTONS
         let myBoards = document.createElement('button');
         myBoards.innerHTML = 'my boards';
         myBoards.addEventListener('click', myBoard);
@@ -66,12 +65,7 @@
         getApp.addEventListener('click', randomSub);
         head.appendChild(getApp);
 
-        let testImgur = document.createElement('button');
-        testImgur.innerHTML = 'testing';
-        testImgur.addEventListener('click', imgurFunc);
-        head.appendChild(testImgur);
-
-
+        //POPULATES POST LAYOUTS
         posts.forEach(i => {
             let permalink = 'https://reddit.com' + i.data.permalink;
             let author = i.data.author;
@@ -90,7 +84,6 @@
             let month = monthName(date);
             let year = date.getFullYear();
             let timestamp = hours + ':' + minutes + ':' + seconds.substr(-2) + ' on ' + day + ' ' + month + ' ' + year;
-
 
             //CREATES POSTS + CONTENT
             let postBox = document.createElement('div');
@@ -114,6 +107,7 @@
             details.className = 'details';
             details.innerHTML = author + ' posted this on ' + timestamp;
             header.appendChild(details);
+
             //HANDLES POST IMAGES
             let pImg = document.createElement('a');
             postCont.appendChild(pImg);
@@ -166,8 +160,10 @@
         })
     };
 
+    //LANDING PAGE
     request('https://www.reddit.com/r/azurelane.json', callback);
 
+    //FUNCTIONS
     clearPage = () => {
         head.innerHTML = '';
         container.innerHTML = '';
@@ -183,11 +179,4 @@
         url = 'https://www.reddit.com/r/azurelane.json';
         clearPage();
         request(url, callback);
-    }
-
-    imgurFunc = () => {
-        url = 'https://www.reddit.com/r/wholesomememes.json';
-        clearPage();
-        request(url, callback);
-
     }
