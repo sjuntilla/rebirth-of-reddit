@@ -117,11 +117,17 @@
             pImg.appendChild(img);
             const noImg = '../assets/noimg.png';
             const nsfwImg = '../assets/nsfwImg.png';
-            if (i.data.thumbnail === 'self' || i.data.thumbnail === 'default' || i.data.thumbnail === 'image') {
+
+            if (i.data.thumbnail === 'self' || i.data.thumbnail === 'default' || i.data.thumbnail === 'image' || i.data.url.endsWith('g') === 'false' || i.data.thumbnail === '' || i.data.crosspost_parent_list) {
                 img.src = '';
             } else if (i.data.thumbnail === 'nsfw') {
                 img.src = nsfwImg;
-            } else if (i.data.thumbnail === '' || i.data.crosspost_parent_list) {
+            } else if (i.data.domain === 'youtube.com') {
+                img.src = '';
+                let vid = document.createElement('IFRAME');
+                vid.src = "https://www.youtube.com/embed/13BkRPwg8Ow"
+                postCont.appendChild(vid);
+            } else if (i.data.post_hint === 'link') {
                 img.src = '';
             } else {
                 img.src = i.data.url;
